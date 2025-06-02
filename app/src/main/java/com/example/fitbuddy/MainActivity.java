@@ -1,36 +1,58 @@
 package com.example.fitbuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView welcomeText;
+    private TextView welcomeTextView;
+    private Button workoutPlanButton, progressButton, logoutButton;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("LoginDebug", "MainActivity started");
-        setContentView(R.layout.activity_main); // ќе ја направиме подолу
+        setContentView(R.layout.activity_main);
 
-        welcomeText = findViewById(R.id.welcomeText);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.d("MainActivityDebug", "User: " + user);
+        welcomeTextView = findViewById(R.id.welcomeTextView);
+        workoutPlanButton = findViewById(R.id.workoutPlanButton);
+        progressButton = findViewById(R.id.progressButton);
+        logoutButton = findViewById(R.id.logoutButton);
+
+        // Поправено прикажување на текстот за добредојде
         if (user != null) {
             if (user.isAnonymous()) {
-                welcomeText.setText("Welcome, guest!");
+                welcomeTextView.setText("Добредојде, кориснику!");
+            } else if (user.getEmail() != null) {
+                welcomeTextView.setText("Добредојде, " + user.getEmail() + "!");
             } else {
-                String message = "Welcome, " + (user.getEmail() != null ? user.getEmail() : "user");
-                welcomeText.setText(message);
+                welcomeTextView.setText("Добредојде!");
             }
         } else {
-            welcomeText.setText("Welcome, unknown user");
-            Log.d("MainActivityDebug", "FirebaseAuth.getInstance().getCurrentUser() returned null");
+            welcomeTextView.setText("Добредојде!");
         }
+
+        workoutPlanButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, TrainingPlanActivity.class);
+            startActivity(intent);
+        });
+
+        progressButton.setOnClickListener(v -> {
+            Toast.makeText(this, "Ова се мои напредоци (во развој)", Toast.LENGTH_SHORT).show();
+        });
+
+        logoutButton.setOnClickListener(v -> {
+            mAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+        });
     }
 }

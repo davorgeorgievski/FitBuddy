@@ -50,6 +50,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".TrainingPlanActivity" />
+        <activity android:name=".WorkoutDetailActivity" />
 
     </application>
 

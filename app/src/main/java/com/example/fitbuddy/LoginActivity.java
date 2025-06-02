@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // ===================== Facebook =====================
     private void loginWithFacebook() {
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"));
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
 
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
