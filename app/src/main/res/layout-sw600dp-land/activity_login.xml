@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="48dp"
+    android:gravity="center">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FitBuddy Login"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="32dp" />
+
+            <EditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Email" />
+
+            <EditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:layout_marginBottom="20dp" />
+
+            <Button
+                android:id="@+id/emailLoginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login with Email" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/googleLoginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login with Google"
+                android:layout_marginTop="10dp" />
+
+            <Button
+                android:id="@+id/facebookLoginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login with Facebook"
+                android:layout_marginTop="10dp" />
+
+            <Button
+                android:id="@+id/anonymousLoginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Continue as Guest"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

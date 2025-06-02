@@ -27,17 +27,16 @@ public class MainActivity extends AppCompatActivity {
         progressButton = findViewById(R.id.progressButton);
         logoutButton = findViewById(R.id.logoutButton);
 
-        // Поправено прикажување на текстот за добредојде
         if (user != null) {
             if (user.isAnonymous()) {
-                welcomeTextView.setText("Добредојде, кориснику!");
+                welcomeTextView.setText(getString(R.string.welcome_guest));
             } else if (user.getEmail() != null) {
                 welcomeTextView.setText("Добредојде, " + user.getEmail() + "!");
             } else {
-                welcomeTextView.setText("Добредојде!");
+                welcomeTextView.setText(getString(R.string.welcome_user));
             }
         } else {
-            welcomeTextView.setText("Добредојде!");
+            welcomeTextView.setText(getString(R.string.welcome_generic));
         }
 
         workoutPlanButton.setOnClickListener(v -> {

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FitBuddy</string>
+    <string name="welcome_user">Добредојде, %1$s!</string>
+    <string name="welcome_guest">Добредојде, кориснику!</string>
+    <string name="welcome_generic">Добредојде!</string>
+    <string name="my_workout_plan">Мој план за тренинг</string>
+    <string name="my_progress">Мои напредоци</string>
+    <string name="logout">Одјава</string>
+    <string name="training_for">Тренинг за %1$s</string>
+    <string name="unknown_day">Непознат ден</string>
+    <string name="update_success">Ажурирано</string>
+    <string name="load_failed">Неуспешно вчитување</string>
+    <string name="not_logged_in">Не сте најавени</string>
+    <string name="saving_failed">Неуспешно запишување</string>
+</resources>

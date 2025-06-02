@@ -1,6 +1,18 @@
 <resources>
-    <string name="app_name">FitBuddy</string>
-    <string name="default_web_client_id">796204136782-dt46j0npqingrjo2notlurf5d8gq6kdg.apps.googleusercontent.com</string>
     <string name="facebook_app_id">1209211477118644</string>
     <string name="fb_login_protocol_scheme">fb1209211477118644</string>
+
+    <string name="app_name">FitBuddy</string>
+    <string name="welcome_user">Welcome, %1$s!</string>
+    <string name="welcome_guest">Welcome, guest!</string>
+    <string name="welcome_generic">Welcome!</string>
+    <string name="my_workout_plan">My Workout Plan</string>
+    <string name="my_progress">My Progress</string>
+    <string name="logout">Logout</string>
+    <string name="training_for">Training for %1$s</string>
+    <string name="unknown_day">Unknown day</string>
+    <string name="update_success">Updated</string>
+    <string name="load_failed">Failed to load</string>
+    <string name="not_logged_in">Not logged in</string>
+    <string name="saving_failed">Failed to save</string>
 </resources>
