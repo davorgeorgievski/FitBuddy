@@ -12,7 +12,20 @@
           "package_name": "com.example.fitbuddy"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "796204136782-dt46j0npqingrjo2notlurf5d8gq6kdg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitbuddy",
+            "certificate_hash": "ff0174e1be7e8114b97517386e084032b2ff04dc"
+          }
+        },
+        {
+          "client_id": "796204136782-ib1klbcvsijvehrkjsmsgfd3l6alnb4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBv3CEozwlTCPKmT4ZCA7vwk5YEXIfeuac"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796204136782-ib1klbcvsijvehrkjsmsgfd3l6alnb4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
