@@ -46,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         progressButton.setOnClickListener(v -> {
-            Toast.makeText(this, "Ова се мои напредоци (во развој)", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, ProgressActivity.class);
+            startActivity(intent);
         });
+
 
         logoutButton.setOnClickListener(v -> {
             mAuth.signOut();

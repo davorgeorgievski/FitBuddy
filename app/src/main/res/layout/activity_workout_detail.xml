@@ -10,20 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Тренинг за ден"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:paddingBottom="8dp" />
-
-    <TextView
-        android:id="@+id/dayDescriptionTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Опис за денот..."
-        android:paddingBottom="8dp" />
+        android:gravity="center"
+        android:layout_marginBottom="12dp" />
 
     <ListView
         android:id="@+id/exerciseListView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent"
+        android:choiceMode="multipleChoice" />
+
 </LinearLayout>

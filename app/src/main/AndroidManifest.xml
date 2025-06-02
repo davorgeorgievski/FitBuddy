@@ -52,6 +52,7 @@
 
         <activity android:name=".TrainingPlanActivity" />
         <activity android:name=".WorkoutDetailActivity" />
+        <activity android:name=".ProgressActivity" />
 
     </application>
 
