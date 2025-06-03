@@ -63,7 +63,7 @@ public class ProgressActivity extends AppCompatActivity {
     }
 
     private void updateListView(List<String> data) {
-        Collections.sort(data); // за конзистентен редослед
+        Collections.sort(data);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
         progressListView.setAdapter(adapter);
     }

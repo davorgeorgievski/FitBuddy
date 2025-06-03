@@ -36,10 +36,9 @@ public class TrainingPlanActivity extends AppCompatActivity {
 
         trainingListView.setAdapter(adapter);
 
-        // 🟡 Додаден click listener за секој ден
         trainingListView.setOnItemClickListener((AdapterView<?> parent, android.view.View view, int position, long id) -> {
             String selectedItem = weeklyPlan[position];
-            String dayName = selectedItem.split(":")[0]; // Земи само името на денот (Monday, Tuesday, ...)
+            String dayName = selectedItem.split(":")[0];
 
             Intent intent = new Intent(TrainingPlanActivity.this, WorkoutDetailActivity.class);
             intent.putExtra("day_name", dayName);

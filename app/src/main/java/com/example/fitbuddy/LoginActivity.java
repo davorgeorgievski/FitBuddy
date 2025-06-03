@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
     // ===================== Google =====================
     private void signInWithGoogle() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id)) // од google-services.json
+                .requestIdToken(getString(R.string.default_web_client_id)) // od google-services.json
                 .requestEmail()
                 .build();
 
