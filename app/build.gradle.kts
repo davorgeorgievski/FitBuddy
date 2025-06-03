@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android") version "1.9.23"
-    id("com.google.gms.google-services") // <--- важно
+    id("com.google.gms.google-services") //
 }
 
 android {
@@ -51,6 +51,10 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-messaging")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
 
     // Google Sign-In
     implementation("com.google.android.gms:play-services-auth:21.0.0")

@@ -1,19 +1,28 @@
+
 package com.example.fitbuddy;
 
 import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.fitbuddy.database.AppDatabase;
+import com.example.fitbuddy.database.ExerciseDao;
+import com.example.fitbuddy.model.CompletedExercise;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.*;
 
 import java.util.*;
+import java.util.concurrent.Executors;
 
 public class WorkoutDetailActivity extends AppCompatActivity {
 
     private TextView dayTitleTextView;
     private ListView exerciseListView;
     private FirebaseFirestore db;
+    private ExerciseDao exerciseDao;
+    private FirebaseAnalytics analytics;
     private String userId;
     private String dayName;
 
@@ -40,7 +49,15 @@ public class WorkoutDetailActivity extends AppCompatActivity {
 
         dayTitleTextView.setText("Тренинг за " + getTranslatedDay(dayName));
 
+        analytics = FirebaseAnalytics.getInstance(this);
+        Bundle screenBundle = new Bundle();
+        screenBundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, "WorkoutDetailActivity");
+        screenBundle.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "WorkoutDetailActivity");
+        analytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screenBundle);
+
         db = FirebaseFirestore.getInstance();
+        exerciseDao = AppDatabase.getInstance(this).exerciseDao();
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             Toast.makeText(this, "Не сте најавени", Toast.LENGTH_SHORT).show();
@@ -70,11 +87,9 @@ public class WorkoutDetailActivity extends AppCompatActivity {
                         }
                         setupListView(exercises);
                     } else {
-                        // Прв пат? → користи стандардна листа за денот
                         List<String> list = weeklyExercises.getOrDefault(dayName, Arrays.asList("Rest day"));
                         for (String ex : list) exercises.put(ex, false);
 
-                        // Сними во база
                         db.collection("users")
                                 .document(userId)
                                 .collection("workouts")
@@ -110,6 +125,15 @@ public class WorkoutDetailActivity extends AppCompatActivity {
                     .collection("workouts")
                     .document(dayName)
                     .update(selectedExercise, isChecked);
+
+            Bundle toggleBundle = new Bundle();
+            toggleBundle.putString("day", dayName);
+            toggleBundle.putString("exercise", selectedExercise);
+            toggleBundle.putBoolean("completed", isChecked);
+            analytics.logEvent("exercise_toggled", toggleBundle);
+
+            CompletedExercise ce = new CompletedExercise(dayName, selectedExercise);
+            Executors.newSingleThreadExecutor().execute(() -> exerciseDao.insert(ce));
         });
     }
 

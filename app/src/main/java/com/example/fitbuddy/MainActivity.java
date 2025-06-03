@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,10 +17,18 @@ public class MainActivity extends AppCompatActivity {
     private Button workoutPlanButton, progressButton, logoutButton;
     private FirebaseAuth mAuth;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle screenBundle = new Bundle();
+        screenBundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, "MainActivity");
+        screenBundle.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "MainActivity");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screenBundle);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -41,17 +51,23 @@ public class MainActivity extends AppCompatActivity {
 
 
         workoutPlanButton.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.METHOD, "WorkoutPlanButton");
+            mFirebaseAnalytics.logEvent("open_workout_plan", bundle);
+
             Intent intent = new Intent(MainActivity.this, TrainingPlanActivity.class);
             startActivity(intent);
         });
 
+
         progressButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ProgressActivity.class);
-            startActivity(intent);
+            mFirebaseAnalytics.logEvent("open_progress", null);
+            startActivity(new Intent(MainActivity.this, ProgressActivity.class));
         });
 
 
         logoutButton.setOnClickListener(v -> {
+            mFirebaseAnalytics.logEvent("logout_clicked", null);
             mAuth.signOut();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
