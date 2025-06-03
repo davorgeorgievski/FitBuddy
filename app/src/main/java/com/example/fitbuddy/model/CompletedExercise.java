@@ -16,10 +16,9 @@ public class CompletedExercise {
     public CompletedExercise(String dayName, String exerciseName) {
         this.dayName = dayName;
         this.exerciseName = exerciseName;
-        this.timestamp = System.currentTimeMillis(); // тековен timestamp
+        this.timestamp = System.currentTimeMillis();
     }
 
-    // Room бара празен конструктор ако има повеќе од еден
     public CompletedExercise() {
     }
 }
